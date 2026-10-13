@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $pass = $_POST['pass'] ?? '';
 
-    // 投稿・更新
+    // 投稿、更新
     if ($action === 'post') {
         $name = trim($_POST['name'] ?? '');
         $comment = trim($_POST['comment'] ?? '');
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $date = date('Y-m-d H:i:s');
 
         if ($name === '' || $comment === '' || $pass === '') {
-            $message = '名前・コメント・パスワードを入力してください。';
+            $message = '名前とパスワードを入れてコメントを書いてください。';
         } elseif ($update_id !== '') {
             $stmt = $pdo->prepare(
                 'SELECT pass FROM test5 WHERE id = :id'
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $number = $_POST['number'] ?? '';
 
         if ($number === '' || $pass === '') {
-            $message = '削除するIDとパスワードを入力してください。';
+            $message = '削除したいコメントのIDとパスワードを入力してください。';
         } else {
             $stmt = $pdo->prepare(
                 'SELECT pass FROM test5 WHERE id = :id'
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $edit = $_POST['edit'] ?? '';
 
         if ($edit === '' || $pass === '') {
-            $message = '編集するIDとパスワードを入力してください。';
+            $message = '編集したいコメントのIDとパスワードを入力してください。';
         } else {
             $stmt = $pdo->prepare(
                 'SELECT * FROM test5 WHERE id = :id'
